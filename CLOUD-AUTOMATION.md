@@ -175,7 +175,7 @@ shared/dzen-content-rules.md + shared/rf-blocked-entities.json
 | Automation Memory | короткий канон gemini-evening-v1; без swarm / без Sol-rewrite |
 | Cron | `0 3,9,15 * * *` (UTC) = 06 / 12 / 18 MSK |
 | Model | **Для самой Automation / Директора:** Grok 4.7, Medium, Fast выключен. Это поле нужно изменить в каждой действующей Automation; модели ролей заданы отдельно (`shared/per-agent-models.md`) |
-| Repo | `vgmixailoff/exmashin` / `main` |
+| Repo | `vgmixailoff/kursor` / `main` |
 
 Per-agent модели: механика и расклад — `shared/per-agent-models.md`.
 Frontmatter `model: gemini-3.8-flash` стоит у Writer. Остальные роли — `grok-4.7-medium` и Task `model=grok-4.7-medium`.
