@@ -1,0 +1,35 @@
+memory/site.env.local
+memory/site.env.local.example
+.cursor/excalibur-blog-handoff.md
+shared/excalibur-blog-handoff.md
+.cursor/excalibur-blog-fragments/
+*.local
+__pycache__/
+*.pyc
+.env
+.DS_Store
+canvases/
+node_modules/
+.cursor/canvases/
+tmp/
+
+# Titles-only canon: never commit cover binaries for done/in-flight articles
+memory/blog/articles/**/cover/**
+memory/blog/articles/**/*.png
+memory/blog/articles/**/*.jpg
+memory/blog/articles/**/*.jpeg
+memory/blog/articles/**/*.webp
+memory/blog/articles/**/*.gif
+memory/blog/articles/**/*.mp4
+
+# ViralDzen morning collect output
+memory/viral/
+
+# Runtime-only memory (never commit): lessons, llms, feedback, metrika
+memory/content-lessons.md
+memory/blog/llms.txt
+memory/blog/llms-full.txt
+memory/blog/wp-publish-log.md
+memory/site-feedback*.json
+memory/site-feedback*.csv
+memory/analytics/metrika-latest.json

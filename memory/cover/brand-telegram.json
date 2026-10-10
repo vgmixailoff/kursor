@@ -1,0 +1,38 @@
+{
+  "channel_url": "https://t.me/maya_pro",
+  "handle": "t.me/maya_pro",
+  "channel_title_ru": "Ковчег / автоматизация make.com и Cursor AI",
+  "placement": "top_right",
+  "applies_to": ["cover", "inline_1", "inline_2", "inline_3"],
+  "badge": {
+    "shape": "circle_avatar",
+    "ring_color": "#FF1493",
+    "text": "t.me/maya_pro",
+    "hint_ru": "подпись / подписаться",
+    "width_ratio_of_panel": 0.14,
+    "avatar_px_at_badge": 44,
+    "font_px_at_badge": 18,
+    "margin_px_at_1920": 28,
+    "note": "Бейдж компактный (~2x меньше прежнего). Круг меньше высоты текста, чтобы надпись читалась пропорционально."
+  },
+  "avatar": {
+    "source": "telegram_public_og_image",
+    "fetch_page": "https://t.me/maya_pro",
+    "local_asset": "memory/cover/assets/maya_pro_avatar.jpg",
+    "note": "Динозавр — круглый лого канала. Перед watermark скачивать свежий og:image если файла нет."
+  },
+  "aspect": {
+    "panel": "16:9",
+    "panel_px": "1920x1080",
+    "quad_canvas_px": "3840x2160",
+    "split_panel_px": "1920x1080",
+    "legacy_quad_ok": "2048x1152 (также 16:9)"
+  },
+  "variability": {
+    "cover_background_rotate": ["ink_black", "paper_white", "charcoal", "warm_paper", "deep_navy"],
+    "cover_hero_rotate": ["product_device", "hands_keyboard", "desk_still_life", "abstract_metal", "ui_glow", "cinematic_object"],
+    "rule": "Не повторять одного и того же героя (видеокарта/линии) статью за статьёй. Шрифт — огромный condensed. Акцент — hot pink #FF1493.",
+    "forbid_repeat_hero": true
+  },
+  "inline_rule": "Панели 2–4 = информативные инфографики (comparison / process-loop / layer-stack / checklist), не декоративные картинки."
+}

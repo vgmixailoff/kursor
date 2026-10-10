@@ -1,0 +1,156 @@
+{
+  "version": "gemini-evening-v1",
+  "description": "Research → Gemini(TITLE+DESCRIPTION+BODY+COVER+INLINE JSON) → Cover(sunburst i2i comic)||Schema → Indexer → Publish. One Gemini Task writes all human Russian. Sol/Telezhka do not rewrite final prose.",
+  "text_model": "gemini-3.8-flash",
+  "text_roles_model": {
+    "writer": "gemini-3.8-flash",
+        "note": "Единственный текстовый агент — Writer на gemini-3.8-flash. TITLE, DESCRIPTION, BODY, COVER_LINE*, alt, INLINE* — один JSON. Title/Description/Cover-text агенты удалены. Директор вызывает Task(model=gemini-3.8-flash-high) один раз. Картинки — Kie GPT Image 2.5 Sunburst i2i + маскот. COVER_PROMPT в JSON не уходит в Kie."
+  },
+  "cover_model": "gpt-image-2-5-sunburst-image-to-image",
+  "cover_resolution": "1K",
+  "cover_contract": "shared/blog-cover-sunburst-comic-contract.md",
+  "cover_prompt_template": "shared/cover-sunburst-comic-prompt.txt",
+  "cover_mascot": "memory/cover/assets/cover-mascot.png",
+  "gemini_contract": "shared/gemini-article-contract.md",
+  "how_we_ship": "shared/HOW-WE-SHIP.md",
+  "description_agent": "excalibur-blog-writer",
+  "description_output": "description-brief.json",
+  "description_rules": "shared/dzen-description-rules.md",
+  "description_gate": "scripts/excalibur_blog_description_gate.py",
+  "writer_is_final": true,
+  "writer_writes_opening": true,
+  "writer_output": "article.html",
+  "writer_json_output": "gemini-article.json",
+  "writer_allowed_sources": [
+    "shared/writer-master-prompt.md",
+    "shared/gemini-article-contract.md",
+    "skills/dzen-article-writing/SKILL.md",
+    "research-notes.md",
+    "published-titles-only.md",
+    "shared/dzen-content-rules.md",
+    "shared/dzen-description-rules.md",
+    "shared/rf-blocked-entities.json"
+  ],
+  "writer_forbidden_sources": [
+    "memory/blog/articles/*/article.html",
+    "published site articles (live pages — old site text is a bad exemplar)",
+    "memory/topics/",
+    "memory/topics/blog-topics.md",
+    "memory/content-lessons.md",
+    "shared/golden-benchmark",
+    "QA reports",
+    "neighbor research-notes as prose exemplars"
+  ],
+  "sol_agent": "excalibur-blog-sol",
+  "sol_is_final": false,
+  "sol_disabled": true,
+  "sol_output": "article.html",
+  "sol_note": "Sol/Telezhka rewrite is OFF under gemini-evening-v1. Gemini owns final Russian prose.",
+  "required_article_meta": {
+    "pipeline_canon": "gemini-evening-v1",
+    "editorial_swarm": false,
+    "text_author": "gemini-3.8-flash"
+  },
+  "gemini_article_gate": "scripts/excalibur_blog_gemini_article_gate.py",
+  "body_visible_chars": {
+    "min": 2500,
+    "max": 6500,
+    "hard_fail_above": 6500
+  },
+  "cta_urls": [
+    "https://t.me/maya_pro",
+    "https://max.ru/maya_pro",
+    "https://kv-ai.ru/obuchenie-po-make"
+  ],
+  "forbidden_cta_urls": [
+    "https://t.me/kovcheg_ai",
+    "https://t.me/s/kovcheg_ai"
+  ],
+  "forbidden_article_files": [
+    "critic-skip.json",
+    "critic-report.json",
+    "critic-report-gate.json",
+    "glavred-skip.json",
+    "glavred-gate.json",
+    "reader-panel-gate.json",
+    "reader-sim-report.json",
+    "reader-sim-gate.json",
+    "novice-walkthrough.json",
+    "novice-dry-run-report.json",
+    "visual-qa-skip.json",
+    "visual-qa-report.json",
+    "thesis-brief.json",
+    "thesis-brief-gate.json",
+    "headline-board.json",
+    "headline-board-gate.json",
+    "anti-template-notes.json",
+    "anti-template-report.json",
+    "human-voice-lint.json",
+    "utility-lint-report.json"
+  ],
+  "forbidden_body_markers": [
+    "day-1",
+    "day one",
+    "day 1",
+    "first win",
+    "quick win",
+    "kovcheg_ai",
+    "ковчег ai",
+    "важно отметить",
+    "следует подчеркнуть",
+    "в современном мире"
+  ],
+  "forbidden_title_markers": [
+    "без копипаста за вечер",
+    "без копипаста",
+    "за один вечер",
+    "за вечер",
+    "группа без копипаста",
+    "канал без копипаста",
+    "полный гайд",
+    "пошаговая инструкция",
+    "чек-лист",
+    "чеклист",
+    "что такое",
+    "и как"
+  ],
+  "forbidden_h2": [
+    "Чем это не является",
+    "Что сделать сегодня"
+  ],
+  "opening_rules": {
+    "block_first": true,
+    "writer_owns_opening": true,
+    "sol_owns_opening": false,
+    "gemini_owns_opening": true,
+    "no_term_dump": true,
+    "no_research_brief": true,
+    "no_api_calque_styk": true,
+    "style": "shared/gemini-article-contract.md",
+    "gate": "scripts/excalibur_blog_opening_meta_gate.py",
+    "runtime": false,
+    "note": "Legacy Sol/calque gate; not called in stamp/structure (gemini_article_gate covers opening)"
+  },
+  "sol_rewrite_depth": {
+    "gate": "scripts/excalibur_blog_sol_rewrite_depth_gate.py",
+    "disabled_when_canon": "gemini-evening-v1",
+    "runtime": false,
+    "note": "Sol disabled under gemini-evening-v1; gate script kept but not called from stamp/structure"
+  },
+  "h1_rules": {
+    "no_series_templates": true,
+    "max_len": 70,
+    "product_name_first_line": true,
+    "style": "shared/gemini-article-contract.md"
+  },
+  "cover": {
+    "mode": "sunburst_i2i",
+    "quad_legacy": false,
+    "pink_ribbon": false,
+    "maya_pro_badge_on_cover": false,
+    "maya_pro_badge_on_inlines": false,
+    "no_title_on_image": true,
+    "no_digits_on_cover": false,
+    "no_dates_on_cover": true
+  }
+}

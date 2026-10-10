@@ -1,0 +1,25 @@
+---
+description: Общая память субагентов Excalibur BLOG — файлы одного рана, не чат.
+alwaysApply: true
+---
+
+# Общая память (все роли)
+
+Субагент **не видит** чат Директора. Общая память — файлы одного checkout:
+
+- `.cursor/excalibur-blog-handoff.md`
+- `memory/blog/articles/<topic_id>-<slug>/`
+- `.cursor/excalibur-blog-fragments/<role>.md` (параллельные роли)
+
+Канон: `shared/subagent-memory-contract.md`. Шаблон prompt: `shared/subagent-task-prompt.md`.
+
+Директор оркестрирует `Task(excalibur-blog-*)` в этом ране. Роли **не** вызывают Task.
+`/in-cloud` и `environment=cloud` запрещены. Isolation/worktree роли запрещены.
+
+Текстовый Gemini — только Writer (`gemini-3.8-flash`). Title / Description / Cover-text удалены.
+
+Модель субагента, кроме Writer: frontmatter `grok-4.7-medium`,
+в Task явно `model=grok-4.7-medium`. Поле не опускать (пустой model → FAST).
+`inherit` не ставить.
+Slug с `-fast` запрещён. Единственное исключение — Writer,
+`Task(excalibur-blog-writer, model=gemini-3.8-flash-high)`.

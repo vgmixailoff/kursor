@@ -1,0 +1,22 @@
+{
+  "name": "excalibur-blog",
+  "displayName": "Excalibur BLOG",
+  "description": "Excalibur BLOG plugin: one Automation run = one orchestrator; roles via Task in the same run (Gemini 3.8 Flash for text). Scout→…→Publish.",
+  "version": "0.11.0",
+  "keywords": [
+    "excalibur",
+    "blog",
+    "wordpress",
+    "orchestrator",
+    "subagents",
+    "writer",
+    "gemini"
+  ],
+  "author": {
+    "name": "Excalibur BLOG"
+  },
+  "rules": "./rules/",
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "commands": "./commands/"
+}

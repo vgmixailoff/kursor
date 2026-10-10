@@ -1,0 +1,4 @@
+Pillow
+numpy
+paramiko
+viraldzen @ git+https://github.com/Horosheff/ViralDzen.git

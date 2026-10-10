@@ -1,0 +1,54 @@
+---
+description: Excalibur BLOG — оркестратор, Task(subagents), Cloud handoff в .cursor/
+alwaysApply: false
+---
+
+# Excalibur BLOG (плагин + Cloud)
+
+## Cloud
+
+- Handoff: `.cursor/excalibur-blog-handoff.md` (не коммитить)
+- Fragments: `.cursor/excalibur-blog-fragments/` для cover||schema
+- Task agents: `.cursor/agents/excalibur-blog-*`
+- Preflight: `scripts/excalibur_blog_today.py`, `excalibur_blog_research_start.py`
+- См. `AGENTS.md`, `CLOUD-AUTOMATION.md`, `shared/cloud-cost-rules.md`,
+  `shared/cursor-subagents.md`, `shared/subagent-memory-contract.md`
+- **Cloud Automation:** один оркестратор-ран. Роли = `Task(excalibur-blog-*)`
+  в этом ране (тот же checkout). **Запрещены** `/in-cloud` и
+  `environment=cloud` (отдельный VM).
+
+## Главный и субагенты
+
+- **Директор** — чат (не Task на самого себя): `agents/excalibur-blog-director.md`,
+  skill `director-excalibur-blog`.
+- **Субагенты** — `Task(excalibur-blog-*)` в том же ране. Кроме Writer:
+  `model=grok-4.7-medium`. Writer — `gemini-3.8-flash-high`.
+  Пустой `model`, `inherit` и slug с `-fast` запрещены.
+  См. `agents/FOR-AGENTS.md`.
+
+## Пайплайн (gemini-evening-v1)
+
+0. `Task(excalibur-blog-scout)` / viral-06 (ViralDzen) при `needs_scout`, затем shell `research_start`
+1. `Task(excalibur-blog-research)`
+2. `Task(excalibur-blog-writer, model=gemini-3.8-flash-high)` → `gemini-article.json` → `article.html` + description-brief + cover-text + gemini_article_gate
+3. Sol **DISABLED**
+4. shell: `pipeline_canon --stamp` + html_linter
+5. `Task(schema)` ‖ `Task(cover)` (только отдельная обложка Sunburst i2i)
+6. `Task(excalibur-blog-inline-visuals)` (скрины и одна уместная схема в BODY)
+7. `Task(excalibur-blog-indexer)` → `Task(excalibur-blog-publish)` (WP only)
+8. `Task(content-learner)` → fixer **только при open incidents** → merge_to_main → purge
+
+Канон: `shared/pipeline-canon.json`. Слоты MSK: 06 вирал / 12 новость / 18 новость (cron `0 3,9,15 * * *` UTC).
+**Не возвращать** Critic/Panel/Thesis/Voice/Headline/Glavred/Visual QA / Sol-rewrite.
+**Не вызывать** Title / Description / Cover-text — Writer уже отдал весь русский текст.
+
+## Запреты
+
+- `Task(excalibur-blog-director)`
+- субагенты не запускают вложенные Task
+- cover||schema без Gemini `article.html` + canon stamp
+- rewrite-loop поверх Gemini (Sol выключен)
+- Fixer restore длинного роя
+- широкий обход `memory/blog` / чтение `llms-full.txt` целиком в LLM
+- Студия Дзена / VC.ru из этого контура
+- `/in-cloud`, `environment=cloud`, isolation/worktree роли

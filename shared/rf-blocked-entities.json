@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "updated": "2026-08-06",
+  "description": "RF-blocked / high-risk entities — DENY as article hero before Scout. Not legal advice; operational canon for Excalibur BLOG + Dzen.",
+  "sources": [
+    "https://dzen.ru/help/ru/requirements/rules.html",
+    "https://dzen.ru/help/ru/requirements/content.html",
+    "https://dzen.ru/help/ru/requirements/content_requirements.html",
+    "Tverskoy District Court Moscow 21.03.2022 Meta Platforms Inc. (Facebook, Instagram); Mosgordud appeal 20.06.2022",
+    "shared/dzen-content-rules.md"
+  ],
+  "hard_deny_heroes": [
+    {
+      "id": "meta",
+      "labels": ["Meta", "Meta Platforms", "Meta AI", "Muse Code", "Muse Spark", "Threads"],
+      "note": "Extremist org / banned activity RF; do not hero products"
+    },
+    {
+      "id": "facebook",
+      "labels": ["Facebook", "FB", "Фейсбук"],
+      "note": "Meta product banned in RF"
+    },
+    {
+      "id": "instagram",
+      "labels": ["Instagram", "Insta", "Инстаграм", "инста"],
+      "note": "Meta product banned in RF; no new autopost how-tos"
+    },
+    {
+      "id": "linkedin",
+      "labels": ["LinkedIn", "Линкедин"],
+      "note": "Blocked by RKN"
+    },
+    {
+      "id": "twitter_x",
+      "labels": ["Twitter", "X.com"],
+      "note": "Blocked in RF; avoid bare letter X as pattern"
+    },
+    {
+      "id": "discord",
+      "labels": ["Discord", "Дискорд"],
+      "note": "Blocked by RKN"
+    },
+    {
+      "id": "vpn_bypass",
+      "labels": ["VPN обход", "обход блокировок", "как обойти блокировку"],
+      "note": "Explicitly forbidden in Dzen rules.html"
+    }
+  ],
+  "allow_exceptions": [
+    {
+      "id": "meta_tags_seo",
+      "labels": ["meta-теги", "meta tegi", "meta tags"],
+      "note": "HTML/SEO meta tags — NOT Meta the company"
+    }
+  ],
+  "preferred_channels": ["Telegram", "VK", "Дзен", "MAX", "YouTube"],
+  "cta_ok": [
+    "https://t.me/maya_pro",
+    "https://max.ru/maya_pro",
+    "https://kv-ai.ru/obuchenie-po-make"
+  ]
+}
